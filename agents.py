@@ -121,15 +121,6 @@ class Patient:
         
         self.priority_score = round(triage_score + age_score + vital_score + duration_score, 1)
 
-    # def complete_treatment(self):
-    #     self.treatment_completed = True
-    #     # self.treatment_end_time = get_current_est_time()
-    #     if self.assigned_doctor and self.assigned_doctor in doctor_status:
-    #         del doctor_status[self.assigned_doctor]
-    #         for dept in blocked_doctors:
-    #             if self.assigned_doctor in blocked_doctors[dept]:
-    #                 blocked_doctors[dept].remove(self.assigned_doctor)
-
     def to_dict(self):
         self.calculate_priority()
         return {

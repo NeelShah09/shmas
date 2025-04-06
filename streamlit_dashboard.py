@@ -1,15 +1,11 @@
 import streamlit as st
-# from smart_hospital import run_patient_flow, department_queues, get_doctor_status, doctors, get_beds
 from smart_hospital import run_patient_flow, get_doctor_status, get_beds
 import logging
 from logging import debug
 logging.basicConfig(level=logging.DEBUG, format='%(asctime)s - %(levelname)s - %(message)s')
 
-# Set page config FIRST (must be first Streamlit command)
+
 st.set_page_config(page_title="SHMAS : Smart Hospital Multi-Agent System", layout="wide")
-# st.markdown('<div class="logo"></div>', unsafe_allow_html=True)
-# Custom CSS
-# Add this to your existing custom CSS
 st.markdown("""
 <div class="logo"></div>
 <style>
@@ -328,41 +324,6 @@ def display_patient_results():
                     <span class="log-success">{message}</span>
                 </div>
                 """, unsafe_allow_html=True)
-
-# def display_patient_queues():
-#     st.subheader("🚨 Patient Queues")
-#     tabs = st.tabs([dept.upper() for dept in department_queues.keys()])
-    
-#     for idx, (dept, queue) in enumerate(department_queues.items()):
-#         with tabs[idx]:
-#             if not queue:
-#                 st.write("No patients in queue")
-#                 continue
-                
-#             for patient in queue:
-#                 wait_time = (datetime.now(pytz.utc) - patient.entry_time).seconds // 60
-#                 priority_class = get_priority_class(patient.triage_level)
-                
-#                 st.markdown(f"""
-#                 <div class="patient-card {priority_class}">
-#                     <div style="display: flex; justify-content: space-between;">
-#                         <div>
-#                             <strong>{get_priority_icon(patient.triage_level)} {patient.name}</strong>
-#                             <div style="color: #666; font-size: 0.9em;">
-#                                 {patient.age}/{patient.gender} | {', '.join(patient.symptoms[:2])}
-#                             </div>
-#                         </div>
-#                         <div style="text-align: right;">
-#                             <div>Priority: {patient.priority_score}</div>
-#                             <div style="font-size: 0.9em;">Waiting: {wait_time} mins</div>
-#                         </div>
-#                     </div>
-#                     <div style="margin-top: 8px; font-size: 0.9em;">
-#                         <span style="color: #666;">Doctor:</span> {patient.assigned_doctor or 'Pending'}
-#                         <span style="margin-left: 10px; color: #666;">Bed:</span> {patient.assigned_bed or 'Pending'}
-#                     </div>
-#                 </div>
-#                 """, unsafe_allow_html=True)
 
 def main():
     # Initialize all necessary session state variables

@@ -49,21 +49,6 @@ CREATE TABLE queue (
 	type_of_room room_type 
 );
 
--- CREATE OR REPLACE FUNCTION update_room_and_doctor_status()
--- RETURNS TRIGGER AS
--- 	$$
--- 	BEGIN
--- 		UPDATE rooms SET is_occupied = TRUE WHERE room_number = NEW.room_number;
--- 		UPDATE doctors SET is_busy = TRUE WHERE doctor_id = NEW.doctor_id;
--- 		RETURN NEW;
--- 	END;
--- 	$$ LANGUAGE plpgsql;
-
--- CREATE OR REPLACE TRIGGER new_case_trigger
--- 	AFTER INSERT ON ongoing_cases
--- 	FOR EACH ROW
--- 	EXECUTE FUNCTION update_room_and_doctor_status();
-
 CREATE OR REPLACE FUNCTION release_room_and_doctor_status()
 RETURNS TRIGGER AS
 	$$
